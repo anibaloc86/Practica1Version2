@@ -1,14 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package practica1version2;
 
-/**
- *
- * @author ANIBAL
- */
 public class PrestamoBook {
+    private String cedula, prestado;
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getPrestado() {
+        return prestado;
+    }
+
+    public void setPrestado(String prestado) {
+        this.prestado = prestado;
+    }
+    
     
 }
