@@ -2,7 +2,32 @@
 package practica1version2;
 
 public class DataBook {
-    private String nombre, autor, año, codigo, cantidad, area;
+    private String nombre, autor, año, codigo, area, cedula, prestado;
+    int cantidad;
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getPrestado() {
+        return prestado;
+    }
+
+    public void setPrestado(String prestado) {
+        this.prestado = prestado;
+    }
 
     public String getNombre() {
         return nombre;
@@ -34,14 +59,6 @@ public class DataBook {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
-
-    public String getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
     }
 
     public String getArea() {

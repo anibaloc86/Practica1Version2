@@ -8,10 +8,9 @@ public class Practica1Version2 {
     public static void main(String[] args) {
         
         DataBook Datos[] = new DataBook[100];
-        PrestamoBook Presta[] = new PrestamoBook[100];
         Scanner lector = new Scanner (System.in);
-        int opc, opcP, opcG, contG=0, contP=0, band=0, bandP=0, opcGE;
-        String name, nameP;
+        int opc, opcP, opcG, contG=0, contP=0, band=0, bandP=0, opcGE, cant=0;
+        String name, nameP, namePP;
        
         do{
            System.out.println("\nSeleccione el módulo que desea.");
@@ -48,7 +47,8 @@ public class Practica1Version2 {
                     System.out.print("\nDigite el código: ");
                     Datos[contG].setCodigo(lector.next());
                     System.out.print("\nDigite la cantidad: ");
-                    Datos[contG].setCantidad(lector.next());
+                    cant = lector.nextInt();
+                    Datos[contG].setCantidad(cant);
                     System.out.print("\nDigite el área: química, física, tecnológia, cálculo o programación: ");
                     Datos[contG].setArea(lector.next());
                     contG++;
@@ -70,7 +70,7 @@ public class Practica1Version2 {
                     System.out.print("Digite el código: ");
                     Datos[i].setCodigo(lector.next());
                     System.out.print("Digite la cantidad: ");
-                    Datos[i].setCantidad(lector.next());
+                    Datos[i].setCantidad(lector.nextInt());
                     System.out.print("Digite el área: química, física, tecnológia, cálculo o programación: ");
                     Datos[i].setArea(lector.next());
                             
@@ -163,16 +163,24 @@ public class Practica1Version2 {
                       
                       case 1:
                           System.out.println("\nPrestar libro.");
-                          
-                          if(contP<99){
-                                                      
-                    Presta[contP] = new PrestamoBook();
-                    System.out.print("\nDigite el nombre del libro: ");
-                    Presta[contP].setPrestado(lector.next());
+                         if(contG>0){                      
+                    System.out.print("\nDigite el nombre del libro: ");     
+                    name = lector.next();        
+                    for (int i=0;i<contG;i++){
+                        if(name.equals(Datos[i].getNombre())){
+                            bandP=1;                          
+                    Datos[i].setPrestado(name);
                     System.out.print("\nDigite la cedula: ");
-                    Presta[contP].setCedula(lector.next());
+                    Datos[i].setCedula(lector.next());
                     contP++;
+                    Datos[i].setCantidad(cant-contP);
+                   }if(bandP==0)
+                       System.out.print("Libro no encontrado");
+                    else 
+                        bandP=0;
+                                                      
                     }
+                         }
                     else System.out.println("No hay libros en la reserva.");
                           
                     break;
@@ -180,14 +188,14 @@ public class Practica1Version2 {
                       case 2:
                           System.out.println("\nDevolver un libro.");
                           System.out.println("Digite el nombre del libro a dovelver: ");
-                          nameP = lector.next();
+                          name = lector.next();
                           
-                    for (int i=0; i<contP; i++){
-                        if (nameP.equals(Presta[i].getPrestado())){
+                    for (int i=0; i<contG; i++){
+                        if (name.equals(Datos[i].getPrestado())){
                             bandP=1;
                              
-                    System.out.print("\nNombre del libro: "+Presta[i].getPrestado());
-                    System.out.print("\nCedula: "+Presta[i].getCedula());
+                    System.out.print("\nNombre del libro: "+Datos[i].getPrestado());
+                    System.out.print("\nCedula: "+Datos[i].getCedula());
                        
                         }
                     }
@@ -195,6 +203,7 @@ public class Practica1Version2 {
                         System.out.print("Libro no encontrado");
                     else 
                         band=0;
+                                            
                           break;
                       
                       case 3:
@@ -204,10 +213,11 @@ public class Practica1Version2 {
                         
                         if (contP!=0){
                                                        
-                    System.out.print("\nNombre del libro: "+Presta[i].getPrestado());
+                    System.out.print("\nNombre del libro: "+Datos[i].getPrestado()+"   CC:"+Datos[i].getCedula());
                     i++;                                       
-                        }
-                    }System.out.print("No hay libros prestados.");
+                        } else 
+                    System.out.print("No hay libros prestados.");  
+                  }
                    break;
                       case 4:
                           System.out.println("Gracias por utilizar el programa.");
