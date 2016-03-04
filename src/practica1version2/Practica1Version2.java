@@ -8,9 +8,10 @@ public class Practica1Version2 {
     public static void main(String[] args) {
         
         DataBook Datos[] = new DataBook[100];
+        PrestamoBook Presta[] = new PrestamoBook[100];
         Scanner lector = new Scanner (System.in);
-        int opc, opcG, contG=0, band=0, opcGE;
-        String name;
+        int opc, opcP, opcG, contG=0, contP=0, band=0, bandP=0, opcGE;
+        String name, nameP;
        
         do{
            System.out.println("\nSeleccione el módulo que desea.");
@@ -25,7 +26,7 @@ public class Practica1Version2 {
                     do{                                          
                         System.out.println("\n1. Ingresar Libro.");
                         System.out.println("2. Actualizar Libro.");
-                        System.out.println("3. Eliminar Usuario.");
+                        System.out.println("3. Eliminar Libro.");
                         System.out.println("4. Buscar Libro.");
                         System.out.println("5. Salir.");
                         System.out.println("\nSeleccione una opción:");
@@ -113,7 +114,7 @@ public class Practica1Version2 {
                      break;
                           
                       case 4:
-                          System.out.println("\nBuscar libr.");
+                          System.out.println("\nBuscar libro.");
                           System.out.println("\nDigite el nombre del libro: ");
                           name = lector.next();
                     
@@ -147,12 +148,80 @@ public class Practica1Version2 {
                    break;
                    
                case 2:
+                   
                    System.out.println("2. Gestión de prestamos.");
                    
-                   
-                   
-                   
+                   do{                                          
+                        System.out.println("\nSeleccione una opción.");
+                        System.out.println("1. Prestar libro.");
+                        System.out.println("2. Devolver libro.");
+                        System.out.println("3. Libros prestados.");
+                        System.out.println("4. Salir.");
+                        opcP= lector.nextInt();
+                    
+                  switch(opcP){
+                      
+                      case 1:
+                          System.out.println("\nPrestar libro.");
+                          
+                          if(contP<99){
+                                                      
+                    Presta[contP] = new PrestamoBook();
+                    System.out.print("\nDigite el nombre del libro: ");
+                    Presta[contP].setPrestado(lector.next());
+                    System.out.print("\nDigite la cedula: ");
+                    Presta[contP].setCedula(lector.next());
+                    contP++;
+                    }
+                    else System.out.println("No hay libros en la reserva.");
+                          
+                    break;
+                    
+                      case 2:
+                          System.out.println("\nDevolver un libro.");
+                          System.out.println("Digite el nombre del libro a dovelver: ");
+                          nameP = lector.next();
+                          
+                    for (int i=0; i<contP; i++){
+                        if (nameP.equals(Presta[i].getPrestado())){
+                            bandP=1;
+                             
+                    System.out.print("\nNombre del libro: "+Presta[i].getPrestado());
+                    System.out.print("\nCedula: "+Presta[i].getCedula());
+                       
+                        }
+                    }
+                    if (band==0)
+                        System.out.print("Libro no encontrado");
+                    else 
+                        band=0;
+                          break;
+                      
+                      case 3:
+                          System.out.println("\nLibros prestados:");
+                                            
+                    for (int i=0; i<contP; i++){
+                        
+                        if (contP!=0){
+                                                       
+                    System.out.print("\nNombre del libro: "+Presta[i].getPrestado());
+                    i++;                                       
+                        }
+                    }System.out.print("No hay libros prestados.");
                    break;
+                      case 4:
+                          System.out.println("Gracias por utilizar el programa.");
+                          break;
+                      default:
+                          System.out.println("Opción incorrecta.");
+                          break;
+                 }       
+                                    
+                   }while(opcP!=4);                   
+                   break;
+                   
+                   
+                   
                case 3:
                    System.out.println("Gracias por utilizar el programa.");
                    break;
